@@ -8,4 +8,21 @@ output "port" {
 
 output "connectionString" {
   value = "redis://${kubernetes_service.redis.metadata[0].name}.${kubernetes_service.redis.metadata[0].namespace}.svc.cluster.local:6379"
+  sensitive = true
 }
+
+output "values" {
+  value = {
+    host = "${kubernetes_service.redis.metadata[0].name}.${kubernetes_service.redis.metadata[0].namespace}.svc.cluster.local",
+    port = 6379,
+  }
+}
+
+output "secrets" {
+  value = {
+    connectionString = "redis://${kubernetes_service.redis.metadata[0].name}.${kubernetes_service.redis.metadata[0].namespace}.svc.cluster.local:6379"
+  }
+  sensitive = true
+}
+
+
