@@ -7,10 +7,13 @@ terraform {
   }
 }
 
+resource "random_uuid" "name" {
+}
+
 resource "kubernetes_deployment" "redis" {
   metadata {
-    name = var.redis_cache_name
-    namespace = var.namespace
+    name = "${random_uuid.name.result}-redis"
+    namespace = var.context.runtime.kubernetes.namespace
     labels = {
       app = "redis"
     }
@@ -47,8 +50,8 @@ resource "kubernetes_deployment" "redis" {
 
 resource "kubernetes_service" "redis" {
   metadata {
-    name = var.redis_cache_name
-    namespace = var.namespace
+    name = "${random_uuid.name.result}-redis"
+    namespace = var.context.runtime.kubernetes.namespace
   }
 
   spec {
