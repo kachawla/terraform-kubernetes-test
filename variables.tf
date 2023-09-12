@@ -1,9 +1,5 @@
-variable "redis_cache_name" {
-  type        = string
-}
+variable "context" {
+  description = "This variable contains Radius recipe context."
 
-variable "namespace" {
-  description = "Namespace for deploying the Redis container"
-  type        = string
-  default     = "default"
+  type = any
 }
