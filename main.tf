@@ -12,7 +12,7 @@ resource "random_uuid" "name" {
 
 resource "kubernetes_deployment" "redis" {
   metadata {
-    name = "${random_uuid.name.result}-redis"
+    name = "redis-${random_uuid.name.result}"
     namespace = var.context.runtime.kubernetes.namespace
     labels = {
       app = "redis"
@@ -50,7 +50,7 @@ resource "kubernetes_deployment" "redis" {
 
 resource "kubernetes_service" "redis" {
   metadata {
-    name = "${random_uuid.name.result}-redis"
+    name = "redis-${random_uuid.name.result}"
     namespace = var.context.runtime.kubernetes.namespace
   }
 
