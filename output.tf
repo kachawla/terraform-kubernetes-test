@@ -5,7 +5,7 @@ output "result" {
       port = 6379
     }
     secrets = {
-      connectionString = "redis://${kubernetes_service.redis.metadata[0].name}.${kubernetes_service.redis.metadata[0].namespace}.svc.cluster.local:6379"
+      connectionString = "${kubernetes_service.redis.metadata[0].name}.${kubernetes_service.redis.metadata[0].namespace}.svc:6379"
     }
   }
   sensitive = true
