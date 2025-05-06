@@ -3,8 +3,3 @@ variable "context" {
 
   type = any
 }
-
-variable "port" {
-  type = number
-  description = "Container port for the Redis instance."
-}
