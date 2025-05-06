@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "redis" {
           name  = "redis"
           image = "redis:latest" 
           port {
-            container_port = 6379
+            container_port = var.port
           }
         }
       }
@@ -60,8 +60,8 @@ resource "kubernetes_service" "redis" {
     }
 
     port {
-      port        = 6379  # Service port
-      target_port = 6379  # Target port of the Redis deployment
+      port        = var.port  # Service port
+      target_port = var.port  # Target port of the Redis deployment
     }
   }
 }
